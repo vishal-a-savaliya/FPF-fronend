@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import Nav from './componets/Nav';
+import Profile from './componets/Profile';
+import Home from './view/Home';
+import { AnimatePresence } from 'framer-motion';
+import { Route, Routes, useLocation } from 'react-router-dom'
+import Orders from './view/Orders';
+import Contact from './view/Help';
+import Ordersucssesfull from './view/Ordersucssesfull';
+import Fileorder from './componets/Fileorder';
+import Xerox from './componets/Xerox';
+
+
 
 function App() {
+
+  const location = useLocation();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <>
+
+      <AnimatePresence>
+        <Routes location={location} key={location.key} >
+
+          <Route path="/" element={<Home />} />
+
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/help" element={<Contact />} />
+          <Route path="/ordersuccess" element={<Ordersucssesfull />} />
+          <Route path="/orderfile" element={<Fileorder />} />
+          <Route path="/xerox" element={<Xerox />} />
+
+        </Routes>
+      </AnimatePresence>
+
+
+      {/* <Home /> */}
+      <Nav />
+
+    </>
   );
 }
 

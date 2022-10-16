@@ -1,13 +1,75 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Poppins', sans-serif;
+    /* font-family: 'JetBrains Mono', monospace; */
+    scroll-behavior: smooth;
+
+  }
+
+  /* body{
+    background-color:#F6F8FC;
+  } */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+
+  .nav-link {
+    @apply flex bg-white py-3 px-4 rounded-md my-2 shadow-lg text-lg text-primary hover:opacity-80 ;
+  }
+
+  .input {
+    @apply w-full md:ml-4 border-b border-gray-400 focus:border-primary font-normal text-base outline-none text-gray-500 py-1 md:px-1 leading-8 transition-colors duration-200 ease-in-out;
+  }
+
+    .label {
+      @apply text-primary font-medium md:text-gray-500 md:text-right md:w-1/5;
+    }
+
+}
+
+
+
+
+.contact-img {
+  background: url("../src/img/contact\ us.jpg");
+  background-size: cover;
+  z-index: 2 !important;
+
+
+}
+
+.contact-img:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(54, 84, 99, 0.7);
+  z-index: -1;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.contact-img>* {
+  z-index: 3;
+}
+
+
+input::placeholder {
+  font-weight: 300 !important;
+}
+
+textarea::placeholder {
+  font-weight: 300 !important;
+}
+
+div>.place-card-large {
+  display: none !important;
 }
