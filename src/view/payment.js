@@ -1,17 +1,32 @@
-import axios from 'axios'
+import axios from "axios";
+import { db } from "../firebase.config";
+import { doc, setDoc } from "firebase/firestore";
 
+export const checkoutHandler = async (amount, product) => {
+    console.log("hello");
 
-export const checkoutHandler = async (amount) => {
+    const key = "rzp_test_vD8E8OZq6c7uZf";
+    const {
+        data: { order },
+    } = await axios.post("http://localhost:4000/api/checkout", {
+        amount,
+    });
 
-
-    //  store data in db
-
-    const key = 'rzp_test_vD8E8OZq6c7uZf'
-
-    const { data: { order } } = await axios.post("http://localhost:4000/api/checkout", {
-        amount
+    // store Product Name and total in db
+    setDoc(doc(db, "Orders", order.id), {
+        productName: product,
+        total: amount,
     })
-
+        .then(() => {
+            console.log("Data added successfully.");
+        })
+        .catch((e) => {
+            console.error(
+                "Error occured while adding data with orderId : ",
+                order.id,
+                e
+            );
+        });
 
     const options = {
         key,
@@ -25,20 +40,19 @@ export const checkoutHandler = async (amount) => {
         prefill: {
             name: "Gaurav Kumar",
             email: "gaurav.kumar@example.com",
-            contact: "9999999999"
+            contact: "9999999999",
         },
         notes: {
-            "address": "VGEC, Chandkheda"
+            address: "VGEC, Chandkheda",
         },
         theme: {
-            "color": "#121212"
-        }
+            color: "#121212",
+        },
     };
 
     const razor = new window.Razorpay(options);
     razor.open();
 
-    console.log("clicked")
+    console.log("clicked");
     // console.log(window)
-
-}
+};

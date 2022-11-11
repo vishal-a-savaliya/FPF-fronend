@@ -1,4 +1,4 @@
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
+// import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { checkoutHandler } from "../view/payment";
@@ -125,9 +125,10 @@ function Xerox() {
                         className='bg-primary py-2  px-6 text-white rounded-md mt-4 mx-auto text-center hover:cursor-pointer'
                         onClick={() => {
                             const price = Math.ceil(0.85 * totalpage);
-                            // console.log(typeof price);
                             const pa = Math.trunc(price);
-                            !isNaN(pa) && pa > 0 && checkoutHandler(pa);
+                            !isNaN(pa) &&
+                                pa > 0 &&
+                                checkoutHandler(pa, "Xerox");
                         }}>
                         Order
                     </p>
